@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>Masai NGO Management</title>
+  </head>
+  <body>
+    <div id="navbar">
+      <h2>Masai NGO Management</h2>
+      <div>
+        <a href="./index.html">
+          <h2>Home</h2>
+        </a>
+        <a href="./donators.html">
+          <h2>Donators</h2>
+        </a>
+        <a href="./volantiers.html">
+          <h2>Volantiers</h2>
+        </a>
+      </div>
+    </div>
+    <div id="create">
+      <h1>Add New Helpers</h1>
+      <form>
+        <input id="name" placeholder="Name" type="text" />
+        <input type="number" id="phone" placeholder="Phone Number" />
+        <input type="email" id="email" placeholder="Email" />
+        <select id="category">
+          <option value="">Select Category</option>
+          <option value="Covid helper fund">Covid helper fund</option>
+          <option value="Orphanage helper fund">Orphanage helper fund</option>
+          <option value="Ukrain war helper fund">Ukrain war helper fund</option>
+          <option value="Old age home helper fund">
+            Old age home helper fund
+          </option>
+        </select>
+        <select id="type">
+          <option value="">Select Type</option>
+          <option value="Donator">Donator</option>
+          <option value="Volantier">Volantier</option>
+        </select>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+  <script>
+  var form = document.querySelector('form');
+  form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get the input values
+    var name = document.getElementById('name').value;
+    var phone = document.getElementById('phone').value;
+    var email = document.getElementById('email').value;
+    var category = document.getElementById('category').value;
+    var type = document.getElementById('type').value;
+
+    // Create an object to store the contact data
+    var data = {
+      name: name,
+      phone: phone,
+      email: email,
+      category: category,
+      type: type
+    };
+
+    // Get the existing data from local storage
+    var existingData = JSON.parse(localStorage.getItem('Helpers')) || [];
+
+    // Add the new data to the existing data
+    existingData.push(data);
+
+    // Store the updated data in local storage
+    localStorage.setItem('Helpers', JSON.stringify(existingData));
+
+    // Reset the form
+    form.reset();
+
+    alert('Contact data has been stored in local storage.');
+  });
+ 
+  </script>
+  <!-- <script src="./Scripts/index.js"></script> -->
+</html>
